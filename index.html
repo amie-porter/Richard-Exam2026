@@ -1,6 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="St Paul's Exams">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="St Paul's Exams">
+    
+    <!-- Icons for iOS/Apple -->
+    <link rel="apple-touch-icon" href="icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
+    
+    <!-- Icons for Android/Other -->
+    <link rel="icon" type="image/png" href="icons/icon-192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="icons/icon-512.png" sizes="512x512">
+    <link rel="shortcut icon" href="icons/icon-192.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <title>St Paul's School - Richard's Exam Assistant</title>
+    
+    <!-- Your existing CSS starts here -->
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --english: #06d6a0;
+            --french: #7209b7;
+            --geography: #073b4c;
+            --history: #ffd166;
+            --science: #118ab2;
+            --latin: #ff9e00;
+            --greek: #8338ec;
+            --tandp: #fb5607;
+            --math: #ef476f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7ff 0%, #eef1ff 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: env(safe-area-inset-top); /* For iPhone notch */
+        }
+        
+        /* Rest of your existing CSS remains exactly the same... */
+        /* ... all your existing CSS code ... */
+        
+    </style>
+</head>
+<body>
+    <!-- Your existing HTML body remains exactly the same... -->
+    <!-- ... all your existing HTML code ... -->
+    
+    <!-- Service Worker Registration Script -->
+    <script>
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+        
+        // Prompt for install on non-iOS devices
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            
+            // Show install button (optional)
+            setTimeout(() => {
+                if (confirm('Would you like to install this app for quick access?')) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted install');
+                        }
+                        deferredPrompt = null;
+                    });
+                }
+            }, 10000); // Show after 10 seconds
+        });
+        
+        // Your existing JavaScript code remains exactly the same...
+        // ... all your existing JavaScript code ...
+    </script>
+
+
+
+
+
+
+
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richard's Exam Assistant - Complete Revision System</title>
